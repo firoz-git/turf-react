@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+/* App.css */
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  background-color: #202020; /* Optional: background color for better visibility */
+}

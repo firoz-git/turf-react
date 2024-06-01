@@ -1,41 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Header from '../components/Header/Header'
 
 
 function About() {
     return (
         <div>
-            <header className="header-sky">
-        <div className="menu-header">
-          <nav className="navbar navbar-fixed-top">
-            <div className="container">
-              <div className="navbar-header ">
-                <button type="button" className="navbar-toggle" data-toggle="collapse"
-                  data-target=".navbar-collapse">
-                  <span className="sr-only">Toggle navigation</span>
-                  <span className="icon-bar "></span>
-                  <span className="icon-bar "></span>
-                  <span className="icon-bar "></span>
-                </button>
-                <a className="navbar-brand" href="file:///E:/Xampp/htdocs/skyline/index.html" title="Skyline"><img
-                  src="images/Home-1/sky-logo-header.png" alt="#" /></a>
-              </div>
-              <div className="collapse navbar-collapse">
-                <ul className="nav navbar-nav navbar-right">
-                  <li>
-                    <Link to='/' ><a title="Home">Home</a></Link>
-                  </li>
-                  <li className="dropdown ">
-                    <Link to='/reservation' ><a href="reservation_1.html" >RESERVATION</a></Link>
-                  </li>
-                  <li><Link to='/about'><a href="about.html" title="About">About</a></Link></li>
-                  <li><Link to='/contact'><a href="contact.html" title="Contact">Contact</a></Link></li>
-                </ul>
-              </div>
-            </div>
-          </nav>
-        </div>
-      </header>
+            <Header />
             <section className="banner-tems text-center">
                 <div className="container">
                     <div className="banner-content">
@@ -50,7 +21,7 @@ function About() {
                         <div className="wrap-about">
                             <div className="about-item">
                                 <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 no-padding-right">
-                                <div className="img">
+                                    <div className="img">
                                         <img src="images/About/about.jpg" alt="#" className="img-responsive" />
                                     </div>
                                 </div>

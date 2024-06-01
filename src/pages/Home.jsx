@@ -5,6 +5,7 @@ import Slide from '../components/Slide';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import Slider from '../section/Slider';
+import Header from '../components/Header/Header';
 
 function Home() {
 
@@ -12,52 +13,22 @@ function Home() {
 
     return (
         <div>
-            <header className="header-sky">
-                <div className="menu-header">
-                    <nav className="navbar navbar-fixed-top">
-                        <div className="container">
-                            <div className="navbar-header ">
-                                <button type="button" className="navbar-toggle" data-toggle="collapse"
-                                    data-target=".navbar-collapse">
-                                    <span className="sr-only">Toggle navigation</span>
-                                    <span className="icon-bar "></span>
-                                    <span className="icon-bar "></span>
-                                    <span className="icon-bar "></span>
-                                </button>
-                                <a className="navbar-brand" href="file:///E:/Xampp/htdocs/skyline/index.html" title="Skyline"><img
-                                    src="images/Home-1/sky-logo-header.png" alt="#" /></a>
-                            </div>
-                            <div className="collapse navbar-collapse">
-                                <ul className="nav navbar-nav navbar-right">
-                                    <li>
-                                        <Link to='/' ><a title="Home">Home</a></Link>
-                                    </li>
-                                    <li className="dropdown ">
-                                        <Link to='/reservation' ><a href="reservation_1.html" >RESERVATION</a></Link>
-                                    </li>
-                                    <li><Link to='/about'><a href="about.html" title="About">About</a></Link></li>
-                                    <li><Link to='/contact'><a href="contact.html" title="Contact">Contact</a></Link></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
-            </header>
+            <Header />
             <Slider />
             {/* <section className="section-slider height-v"> */}
 
-           
 
 
-                {/* <div id="index12" className="owl-carousel  owl-theme"> */}
-                    {/* <div className="item">
+
+            {/* <div id="index12" className="owl-carousel  owl-theme"> */}
+            {/* <div className="item">
                         <img alt="Third slide" src="images/Home-1/Slider-v1.jpg" className="img-responsive" />
                         <div className="carousel-caption">
                             <h1>Welcome to Skyline</h1>
                             <p><span className="line-t"></span>Hotels & Resorts <span className="line-b"></span></p>
                         </div>
                     </div> */}
-                    {/* <div className="item">
+            {/* <div className="item">
                         <img alt="Third slide" src="images/Home-2/Slider-v2.jpg" className="img-responsive" />
                         <div className="container">
                             <div className="carousel-caption ">
@@ -66,8 +37,8 @@ function Home() {
                             </div>
                         </div>
                     </div> */}
-                {/* </div> */}
-                {/* <div className="check-avail">
+            {/* </div> */}
+            {/* <div className="check-avail">
                     <div className="container">
                         <div className="arrival date-title ">
                             <label>Arrival Date </label>

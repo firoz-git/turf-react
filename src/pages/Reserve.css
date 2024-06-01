@@ -1,0 +1,21 @@
+/* src/SlotBooking.css */
+
+.slot-booking {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+}
+
+.slot-section {
+    margin: 20px 0;
+}
+
+.slots {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.slot-button {
+    margin: 5px;
+}

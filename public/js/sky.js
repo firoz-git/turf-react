@@ -1,16 +1,16 @@
-$(document).ready(function() {
+$(document).ready(function () {
     "use strict";
     /*masonry*/
-    $('#container').each(function() {
+    $('#container').each(function () {
         $('#container').masonry();
     });
 
     /*lightbox*/
-    $('.lightbox').each(function() {
+    $('.lightbox').each(function () {
         $('.lightbox').littleLightBox();
     });
     /*menu-dropdow*/
-    $('.navbar a.dropdown-toggle').on('click', function(e) {
+    $('.navbar a.dropdown-toggle').on('click', function (e) {
         var $el = $(this);
         var $parent = $(this).offsetParent(".dropdown-menu");
         $(this).parent("li").toggleClass('open');
@@ -83,7 +83,7 @@ $(document).ready(function() {
     /*end-owlCarousel-header*/
 
     /* Modal-video*/
-    $(".btn-play").on("click", function(event) {
+    $(".btn-play").on("click", function (event) {
         var target = $(this).attr('href'),
             url = $(target).data('video');
 
@@ -96,7 +96,7 @@ $(document).ready(function() {
         $(target).find('iframe').attr('src', url);
 
         $(target).addClass('opened');
-        $(target).on("click", function() {
+        $(target).on("click", function () {
             $(this).removeClass('opened').attr('src', '');
         });
 
@@ -106,7 +106,7 @@ $(document).ready(function() {
 
     /*  Show/hidden-password*/
 
-    $(".toggle-password").on("click", function() {
+    $(".toggle-password").on("click", function () {
 
         $(this).toggleClass("fa-eye fa-eye-slash");
         var input = $($(this).attr("data-toggle"));
@@ -120,12 +120,12 @@ $(document).ready(function() {
     /* end/ Show/hidden-password*/
 
     /*check-uot*/
-    $('.dropdown-menu li').on("click", function() {
+    $('.dropdown-menu li').on("click", function () {
         $('#selected').text($(this).text());
         $('li ').removeClass("active");
         $(this).addClass("active");
     });
-    $('.dropdown-menu li').on("click", function() {
+    $('.dropdown-menu li').on("click", function () {
         $('#selected1').text($(this).text());
         $('li ').removeClass("active");
         $(this).addClass("active");
@@ -165,7 +165,7 @@ $(document).ready(function() {
         $("#seconds").html(seconds + "<span>Seconds</span>");
 
     }
-    setInterval(function() {
+    setInterval(function () {
         makeTimer();
     }, 1000);
     /*end/countdown*/
@@ -174,7 +174,7 @@ $(document).ready(function() {
     aweSelect();
 
     function aweSelect() {
-        $('.awe-select').each(function(index, el) {
+        $('.awe-select').each(function (index, el) {
             $(this).selectpicker();
         });
 
@@ -183,32 +183,36 @@ $(document).ready(function() {
     /*end/select*/
 
     /*scroll-header*/
-    var stickyNav = $('header').offset().top;
-    $(window).scroll(function() {
-        if ($(window).scrollTop() > stickyNav) {
-            $('header').addClass('header-top-sky');
-        } else {
-            $('header').removeClass('header-top-sky');
-        }
-    });
+    // var stickyNav = $('header').offset().top;
+    // // console.log(stickyNav, 'iam sticky')
+    // $(window).scroll(function () {
+    //     console.log($(window).scrollTop(), 'didnt')
+    //     console.log(stickyNav, 'iam sticky')
+
+    //     if ($(window).scrollTop() > stickyNav) {
+    //         $('header').addClass('header-top-sky');
+    //     } else {
+    //         $('header').removeClass('header-top-sky');
+    //     }
+    // });
     /*end/scroll-header*/
 
     /*datepicker*/
-    $(function() {
-        $('#datepicker').each(function() {
+    $(function () {
+        $('#datepicker').each(function () {
             $(this).datepicker({
                 autoclose: true,
                 todayHighlight: true
             }).datepicker('update', new Date());
         });
-        $('#datepickeri').each(function() {
+        $('#datepickeri').each(function () {
             $(this).datepicker({
                 autoclose: true,
                 todayHighlight: true
             }).datepicker('update', new Date());
         });
 
-        $('#datepicker1').each(function() {
+        $('#datepicker1').each(function () {
             $("#datepicker1").datepicker({
                 dateFormat: 'mm/dd/yy',
                 changeMonth: true,
@@ -218,7 +222,7 @@ $(document).ready(function() {
             });
         });
 
-        $('#datepicker2').each(function() {
+        $('#datepicker2').each(function () {
             $("#datepicker2").datepicker({
                 dateFormat: 'mm/dd/yy',
                 changeMonth: true,
@@ -238,7 +242,7 @@ $(document).ready(function() {
     function StatisticsCount() {
         if ($('.item .count').length) {
 
-            $('.item').appear(function() {
+            $('.item').appear(function () {
 
                 var count_element = $('.count', this).html();
                 $(".count", this).countTo({
@@ -253,10 +257,10 @@ $(document).ready(function() {
 
     /*click-hamburger*/
 
-    $(".navbar-toggle").on("click", function() {
-            $(this).toggleClass("hamburger-icon");
-        })
-        /*end/hamburger*/
+    $(".navbar-toggle").on("click", function () {
+        $(this).toggleClass("hamburger-icon");
+    })
+    /*end/hamburger*/
 
     var day, month, year;
 
@@ -356,12 +360,12 @@ $(document).ready(function() {
         }
     });
     /*end-owlCarousel-rooms*/
-    $('ul li a').on("click", function() {
+    $('ul li a').on("click", function () {
         $('li a').removeClass("active");
         $(this).addClass("active");
     });
     /*scroll-top*/
-    $(window).scroll(function() {
+    $(window).scroll(function () {
         if ($(this).scrollTop() > 300) {
             $('.scrollToTop').fadeIn();
         } else {
@@ -369,23 +373,23 @@ $(document).ready(function() {
         }
     });
     //Click event to scroll to top
-    $('.scrollToTop').on("click", function() {
+    $('.scrollToTop').on("click", function () {
         $('html, body').animate({
             scrollTop: 0
         }, 800);
         return false;
     });
-    (function($) {
+    (function ($) {
         /* Gallery Isotope */
         function GalleryIsotope() {
             if ($('.gallery').length) {
-                $('.gallery').each(function(index, el) {
+                $('.gallery').each(function (index, el) {
                     var $this = $(this),
                         $isotope = $this.find('.gallery-isotope'),
                         $filter = $this.find('.gallery-cat');
 
                     if ($isotope.length) {
-                        var isotope_run = function(filter) {
+                        var isotope_run = function (filter) {
                             $isotope.isotope({
                                 itemSelector: '.item-isotope',
                                 filter: filter,
@@ -403,7 +407,7 @@ $(document).ready(function() {
                             });
                         }
 
-                        $filter.on('click', 'a', function(event) {
+                        $filter.on('click', 'a', function (event) {
                             event.preventDefault();
                             $(this).parents('ul').find('.active').removeClass('active');
                             $(this).parent('li').addClass('active');
@@ -416,8 +420,8 @@ $(document).ready(function() {
             }
         }
 
-        $(window).load(function() {
-            $('#preloader').delay(1000).fadeOut('400', function() {
+        $(window).load(function () {
+            $('#preloader').delay(1000).fadeOut('400', function () {
                 $(this).fadeOut()
             });
             $('body').append('<div class="awe-popup-overlay" id="awe-popup-overlay"></div><div class="awe-popup-wrap" id="awe-popup-wrap"><div class="awe-popup-content"></div><span class="awe-popup-close" id="awe-popup-close"></div>');
@@ -536,20 +540,20 @@ $(document).ready(function() {
     /*END/MAP*/
 
     /*datepicker*/
-    $(".carousel-search li a").on("click", function() {
+    $(".carousel-search li a").on("click", function () {
         var selText = $(this).text();
         $(this).parents('.btn-group').find('.dropdown-toggle').html(selText);
     });
     /*end/datepicker*/
     /*rooms-detail*/
-    $('.gallery3').each(function() {
+    $('.gallery3').each(function () {
         $(this).vitGallery({
             debag: true,
             thumbnailMargin: 37,
             fullscreen: true
         });
     });
-    $('.gallery1').each(function() {
+    $('.gallery1').each(function () {
         $(this).vitGallery({
             controls: 'points',
             transition: 'crossfade',
@@ -557,7 +561,7 @@ $(document).ready(function() {
             fullscreen: true
         });
     });
-    $('.gallery2').each(function() {
+    $('.gallery2').each(function () {
         $(this).vitGallery({
             controls: 'points',
             transition: 'slide-blur',

@@ -1,0 +1,185 @@
+/* src/styles.css */
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reservation-container {
+  max-width: 900px;
+  width: 100%;
+}
+
+.reservation-content {
+  background-color: #f8f9fa; /* Example background color */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-heading {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* src/SlotBooking.css */
+
+.slot-booking {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+}
+
+.slot-section {
+  margin: 20px 0;
+}
+
+.slots {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.slot-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.slot-button:hover {
+  background-color: #0056b3;
+}
+
+/* Book.css */
+
+.container {
+  padding: 20px;
+}
+
+.reservation-page {
+  position: relative;
+}
+
+.reservation_step ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.reservation_step ul li {
+  cursor: pointer;
+  padding: 10px 20px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.reservation_step ul li.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.reservation_step ul li:hover {
+  background-color: #0056b3;
+  color: white;
+}
+
+.reservation_content {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.reservation-calendar_custom {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* Adjusted CSS for DatePicker */
+
+.datepicker-container {
+  position: absolute;
+  z-index: 1000;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  padding: 1rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+@media (max-width: 768px) {
+  .datepicker-container {
+      top: 50px;
+      width: 90%;
+      padding: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+  }
+}
+
+.react-datepicker {
+  width: 100%;
+}
+
+.react-datepicker__header {
+  background-color: #007bff; /* Bootstrap primary color */
+  color: white;
+}
+
+.react-datepicker__current-month,
+.react-datepicker__day-name,
+.react-datepicker__day {
+  font-weight: bold;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+  background-color: #007bff; /* Bootstrap primary color */
+  color: white;
+}
+
+.react-datepicker__day--today {
+  background-color: #ffc107; /* Bootstrap warning color */
+  color: black;
+}
+
+.datepicker-container {
+  width: 100%;
+  max-width: 400px; /* Adjust the max-width as needed */
+  margin: 0 auto;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.datepicker-container .react-datepicker {
+  width: 100%;
+}
+
+.slot-button {
+  margin: 5px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.slot-button:hover {
+  background-color: #0056b3;
+}
