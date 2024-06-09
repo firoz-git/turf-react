@@ -12,7 +12,8 @@
 }
 
 .reservation-content {
-  background-color: #f8f9fa; /* Example background color */
+  background-color: #f8f9fa;
+  /* Example background color */
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -77,17 +78,17 @@
 .reservation_step ul li {
   cursor: pointer;
   padding: 10px 20px;
-  transition: background-color 0.3s, color 0.3s;
+  /* transition: background-color 0.3s, color 0.3s; */
 }
 
 .reservation_step ul li.active {
-  background-color: #007bff;
-  color: white;
+  /* background-color: #007bff; */
+  /* color: white; */
 }
 
 .reservation_step ul li:hover {
-  background-color: #0056b3;
-  color: white;
+  /* background-color: #0056b3; */
+  /* color: white; */
 }
 
 .reservation_content {
@@ -117,17 +118,30 @@
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
   padding: 1rem;
   width: 100%;
-  max-width: 400px;
-}
+  max-width: 348px;
+  margin: 0 auto;}
 
 @media (max-width: 768px) {
   .datepicker-container {
-      top: 50px;
-      width: 90%;
-      padding: 1rem;
-      left: 50%;
-      transform: translateX(-50%);
+    top: 50px;
+    width: 90%;
+    padding: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
   }
+
+  .MuiDateCalendar-root {
+    /* display: none !important; */
+    top: 50px;
+    width: 90%;
+    padding: 1rem;
+    /* left: 50%; */
+    /* transform: translateX(-50%); */
+  }
+}
+
+.MuiDateCalendar-root {
+  border-radius: 20px;
 }
 
 .react-datepicker {
@@ -135,7 +149,8 @@
 }
 
 .react-datepicker__header {
-  background-color: #007bff; /* Bootstrap primary color */
+  background-color: #007bff;
+  /* Bootstrap primary color */
   color: white;
 }
 
@@ -147,28 +162,29 @@
 
 .react-datepicker__day--selected,
 .react-datepicker__day--keyboard-selected {
-  background-color: #007bff; /* Bootstrap primary color */
+  background-color: #007bff;
+  /* Bootstrap primary color */
   color: white;
 }
 
 .react-datepicker__day--today {
-  background-color: #ffc107; /* Bootstrap warning color */
+  background-color: #ffc107;
+  /* Bootstrap warning color */
   color: black;
 }
 
-.datepicker-container {
+/* .datepicker-container {
   width: 100%;
-  max-width: 400px; /* Adjust the max-width as needed */
-  margin: 0 auto;
+
   padding: 1rem;
   border: 1px solid #ddd;
   border-radius: 0.25rem;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-}
+} */
 
-.datepicker-container .react-datepicker {
+/* .datepicker-container .react-datepicker {
   width: 100%;
-}
+} */
 
 .slot-button {
   margin: 5px;
@@ -183,3 +199,90 @@
 .slot-button:hover {
   background-color: #0056b3;
 }
+
+.MuiPickersToolbar-root {
+  display: none !important;
+
+}
+
+.MuiPickersCalendarHeader-switchViewButton {
+  display: none !important;
+
+}
+
+.MuiPickersCalendarHeader-root {
+  color: white;
+  border-radius: 4px;
+  border-width: 2px;
+  border-color: #e91e63;
+  border: 2px solid;
+  background-color: #8f7037;
+}
+
+.MuiDialogActions-root {
+  display: none !important;
+}
+
+.MuiPickerStaticWrapper-root {
+  box-shadow: 3px 2px 10px 5px #888888 !important;
+}
+
+.MuiPickersToolbar-root-MuiDatePickerToolbar-root .MuiPickersToolbar-penIconButton {
+  display: none !important;
+}
+
+
+.MuiDayCalendar-weekDayLabel {
+  /* background-color: #977a42; */
+}
+
+
+.MuiTypography-root {
+  color: white;
+}
+
+.MuiDayCalendar-root {
+  color: #f4f4f4;
+  border-radius: 5px;
+  /* border-width: 4px; */
+  border-color: #e91e63;
+  border: 4px solid;
+  background-color: white;
+  box-shadow: 3px 2px 10px 5px #888888 !important;
+
+}
+
+.MuiPickersDay-today {
+  color: black !important;
+  background-color: rgb(235, 240, 143) !important;
+  /* font-size: 20px; */
+
+}
+
+.css-1wy8uaa-MuiButtonBase-root-MuiPickersDay-root.Mui-selected:hover {
+  will-change: background-color;
+  background-color: orangered !important;
+}
+
+.css-1wy8uaa-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
+  will-change: background-color;
+  background-color: #8f7037 !important;
+}
+
+.css-1wy8uaa-MuiButtonBase-root-MuiPickersDay-root:hover {
+  background-color: orange !important;
+}
+
+.css-1wy8uaa-MuiButtonBase-root-MuiPickersDay-root {
+  font-size: 1.3rem !important;
+}
+
+.css-rhmlg1-MuiTypography-root-MuiDayCalendar-weekDayLabel {
+  font-size: 1.3rem !important;
+}
+
+.css-cyfsxc-MuiPickersCalendarHeader-labelContainer {
+  font-size: 1.3rem !important;
+
+}
+

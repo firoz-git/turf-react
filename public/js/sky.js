@@ -6,9 +6,9 @@ $(document).ready(function () {
     });
 
     /*lightbox*/
-    $('.lightbox').each(function () {
-        $('.lightbox').littleLightBox();
-    });
+    // $('.lightbox').each(function() {
+    //     $('.lightbox').littleLightBox();
+    // });
     /*menu-dropdow*/
     $('.navbar a.dropdown-toggle').on('click', function (e) {
         var $el = $(this);
@@ -184,11 +184,7 @@ $(document).ready(function () {
 
     /*scroll-header*/
     // var stickyNav = $('header').offset().top;
-    // // console.log(stickyNav, 'iam sticky')
-    // $(window).scroll(function () {
-    //     console.log($(window).scrollTop(), 'didnt')
-    //     console.log(stickyNav, 'iam sticky')
-
+    // $(window).scroll(function() {
     //     if ($(window).scrollTop() > stickyNav) {
     //         $('header').addClass('header-top-sky');
     //     } else {
@@ -199,13 +195,18 @@ $(document).ready(function () {
 
     /*datepicker*/
     $(function () {
+        console.log('date checker')
+
         $('#datepicker').each(function () {
+            console.log('first date')
             $(this).datepicker({
                 autoclose: true,
                 todayHighlight: true
             }).datepicker('update', new Date());
+            // console.log($(this).datepicker('update', new Date()),'iam datecheck on this')
         });
         $('#datepickeri').each(function () {
+            console.log('second date')
             $(this).datepicker({
                 autoclose: true,
                 todayHighlight: true

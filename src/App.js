@@ -7,56 +7,39 @@ import Contact from './pages/Contact';
 import About from './pages/About';
 import { db } from './firebase/config';
 import { collection, getDocs } from 'firebase/firestore';
-import { Circles  } from 'react-loader-spinner'
-import { Grid  } from 'react-loader-spinner'
-import { Hearts  } from 'react-loader-spinner'
-import { Hourglass  } from 'react-loader-spinner'
-import { InfinitySpin  } from 'react-loader-spinner'
-import { LineWave  } from 'react-loader-spinner'
-import { MagnifyingGlass  } from 'react-loader-spinner'
-import { MutatingDots  } from 'react-loader-spinner'
-import { Oval  } from 'react-loader-spinner'
-import { ProgressBar  } from 'react-loader-spinner'
-import { Puff  } from 'react-loader-spinner'
-import { Radio  } from 'react-loader-spinner'
-import { RevolvingDot  } from 'react-loader-spinner'
-import { Rings  } from 'react-loader-spinner'
-import { RotatingLines  } from 'react-loader-spinner'
-import { RotatingSquare  } from 'react-loader-spinner'
-import { RotatingTriangles  } from 'react-loader-spinner'
-import { TailSpin  } from 'react-loader-spinner'
-import { ThreeCircles  } from 'react-loader-spinner'
-import { ThreeDots  } from 'react-loader-spinner'
-import { Triangle  } from 'react-loader-spinner'
-import { Vortex  } from 'react-loader-spinner'
-import { Watch  } from 'react-loader-spinner'
-import { BiAlignMiddle } from 'react-icons/bi';
-import { red } from '@mui/material/colors';
-import Header from './components/Header/Header';
+import { Circles } from 'react-loader-spinner'
 
 
 function App() {
     const [slots, setSlots] = useState({
-        morning: [],
-        afternoon: [],
-        evening: []
+        turf_1: [],
+        turf_2: [],
+        turf_3: [],
+        turf_4: [],
+        turf_5: [],
     });
     const [loading, setLoading] = useState(true);
 
     const fetchSlots = async () => {
         try {
+            // console.log(data,'iam fetchdata')
             const slotsCollection = collection(db, 'slots');
             const snapshot = await getDocs(slotsCollection);
             const data = snapshot.docs.map(doc => doc.data());
             console.log(data, 'iam data')
-            const morningSlots = data.filter(slot => slot.section === 'Morning').map(slot => `${slot.startTime}-${slot.endTime}`);
-            const afternoonSlots = data.filter(slot => slot.section === 'Afternoon').map(slot => `${slot.startTime}-${slot.endTime}`);
-            const eveningSlots = data.filter(slot => slot.section === 'Evening').map(slot => `${slot.startTime}-${slot.endTime}`);
-            console.log(morningSlots, 'iam morning slots')
+            console.log('fetch call cehck')
+            const Turf_1 = data.filter(slot => slot.name === 'Turf-1')
+            const Turf_2 = data.filter(slot => slot.name === 'Turf-2')
+            const Turf_3 = data.filter(slot => slot.name === 'Turf-3')
+            const Turf_4 = data.filter(slot => slot.name === 'Turf-4')
+            const Turf_5 = data.filter(slot => slot.name === 'Turf-5')
+            // const Turf_1 = data.filter(slot => slot.name === 'Turf-1').map(slot => `${slot.startTime}-${slot.endTime}`);
             setSlots({
-                morning: morningSlots,
-                afternoon: afternoonSlots,
-                evening: eveningSlots,
+                turf_1: Turf_1,
+                turf_2: Turf_2,
+                turf_3: Turf_3,
+                turf_4: Turf_4,
+                turf_5: Turf_5,
             });
             setLoading(false);
         } catch (error) {
@@ -65,14 +48,15 @@ function App() {
     };
 
     useEffect(() => {
-        console.log('iam fecthing')
+        console.log(loading,'iam fecthing')
         fetchSlots();
     }, []);
+
 
     if (loading) {
         return (
             <div className="loader-container">
-                <Circles height="50" width="50" color='white' ariaLabel='loading' />
+                <Circles height="50" width="50" color='black' ariaLabel='loading' />
             </div>
         );
     }
@@ -81,10 +65,10 @@ function App() {
             {/* <Header /> */}
             <Router>
                 <Routes>
-                    <Route exact path='/' element={<Home />} />
+                    <Route exact path='/' element={<Home SlotData={slots} fetchSlots={fetchSlots} />} />
                 </Routes>
                 <Routes>
-                    <Route path='/reservation' element={<Reserve SlotData={slots} />} />
+                    <Route path='/reservation' element={<Reserve />} />
                 </Routes>
                 <Routes>
                     <Route path='/about' element={<About />} />
