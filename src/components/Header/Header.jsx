@@ -28,7 +28,6 @@ const Header = () => {
     }, []);
 
     return (
-        // <header ref={headerRef}>
         <header ref={headerRef} className="header-sky">
             <div className="menu-header">
                 <nav className="navbar navbar-fixed-top">

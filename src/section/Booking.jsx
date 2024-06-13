@@ -18,7 +18,6 @@ import Modal from '../components/Modal/Modal'
 
 const Booking = (props) => {
 
-    console.log(props, 'iam propcheck')
     const { slots } = props
     const images = [
         { id: 1, src: img1, label: '5s One', name: 'turf_1' },
@@ -35,9 +34,11 @@ const Booking = (props) => {
     const [slotData, setSlots] = useState({ morning: [], afternoon: [], evening: [] })
     const [turfName, setSelectedTurf] = useState('turf_1')
     const [showModal, setShowModal] = useState(false);
+    const [selectedSlot, setSelectedSlot] = useState(null); // Add this state to store selected slot details
 
-    console.log(slotData, 'iam slotdta filtered')
+    // console.log(slotData, 'iam slotdta filtered')
     useEffect(() => {
+
         slotSetting();
 
         const handleClickOutside = (event) => {
@@ -51,11 +52,19 @@ const Booking = (props) => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, [turfName, selectedDate]);
-    const renderSlots = (timeOfDay) => {
-        return slotData[timeOfDay].map((slot, index) => (
-            <button key={index} className="btn btn-room" style={{ marginRight: 10, marginBottom: 10 }}>{slot.startTime}-{slot.endTime}</button>
-        ));
-    };
+
+    // const renderSlots = (timeOfDay) => {
+    //     return slotData[timeOfDay].map((slot, index) => (
+    //         <button
+    //             key={index}
+    //             className="btn btn-room"
+    //             style={{ marginRight: 10, marginBottom: 10 }}
+    //             onClick={(e) => handleBookNow(e, slot)}
+    //         >
+    //             {slot.startTime}-{slot.endTime}
+    //         </button>
+    //     ));
+    // };
 
     const handleImageChange = (image) => {
         setActiveImage(image.src);
@@ -70,7 +79,7 @@ const Booking = (props) => {
             evening: selectedSlots.filter(slot => slot.section === 'Evening'),
         });
     };
-    console.log(turfName, 'iam turfname selected')
+    // console.log(turfName, 'iam turfname selected')
     const incrementDate = (e) => {
         e.preventDefault();
         setSelectedDate(new Date(selectedDate.setDate(selectedDate.getDate() + 1)));
@@ -83,8 +92,11 @@ const Booking = (props) => {
     const handleCloseModal = () => {
         setShowModal(false);
     };
-    const handleBookNow = () => {
-        console.log("Booking now...");
+    const handleBookNow = (e, slot) => {
+        e.stopPropagation();
+        e.preventDefault();
+        console.log("Booking now...", slot);
+        setSelectedSlot(slot);
         setShowModal(true);
     };
     return (
@@ -146,7 +158,7 @@ const Booking = (props) => {
                                             </LocalizationProvider>
                                         </div>
                                     )}
-                                    <div className="slot-booking">
+                                    {/* <div className="slot-booking">
                                         <div className="slot-section">
                                             <h4>Morning Section</h4>
                                             <div className="slots" onClick={handleBookNow}>{renderSlots('morning')}</div>
@@ -159,6 +171,25 @@ const Booking = (props) => {
                                             <h4>Evening Section</h4>
                                             <div className="slots" onClick={handleBookNow}>{renderSlots('evening')}</div>
                                         </div>
+                                    </div> */}
+                                    <div className="slot-booking">
+                                        {['morning', 'afternoon', 'evening'].map(timeOfDay => (
+                                            <div className="slot-section" key={timeOfDay}>
+                                                <h4>{timeOfDay.charAt(0).toUpperCase() + timeOfDay.slice(1)} Section</h4>
+                                                <div className="slots">
+                                                    {slotData[timeOfDay].sort((a, b) => a.startTime.localeCompare(b.startTime)).map((slot, index) => (
+                                                        <button
+                                                            key={index}
+                                                            className="btn btn-room"
+                                                            style={{ marginRight: 10, marginBottom: 10 }}
+                                                            onClick={(e) => handleBookNow(e, slot)}
+                                                        >
+                                                            {slot.startTime}-{slot.endTime}
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
                             </div>
@@ -169,7 +200,10 @@ const Booking = (props) => {
             <div className={`section-slider height-v ${showModal ? 'blurred' : ''}`}>
                 {/* existing JSX code */}
 
-                <Modal showModal={showModal} handleClose={handleCloseModal} />
+                <Modal showModal={showModal} slotData={selectedSlot}
+                    turfName={turfName}
+                    selectedDate={selectedDate}
+                    allSlotData={slotData} handleClose={handleCloseModal} />
                 {/* <h2>Booking Details</h2>
                     <p>Enter your booking information here.</p>
                 </Modal> */}

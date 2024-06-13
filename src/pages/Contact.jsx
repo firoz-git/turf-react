@@ -5,7 +5,7 @@ import Header from '../components/Header/Header'
 function Contact() {
   return (
     <div>
-      <Header/>
+      <Header />
       <section className="banner-tems text-center">
         <div className="container">
           <div className="banner-content">
@@ -18,38 +18,40 @@ function Contact() {
         <div className="container">
           <div className="contact">
             <div className="row">
-              <div className="col-md-6 col-lg-5">
-                <div className="text">
-                  <h2>Contact</h2>
-                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.</p>
-                  <ul>
-                    <li><i className=" fa ion-ios-location-outline"></i> 121 King Str, Melbourne Victoria</li>
-                    <li><i className="fa fa-phone" aria-hidden="true"></i> 1-548-854-8898</li>
-                    <li><i className="fa fa-envelope-o" aria-hidden="true"></i><a href="https://landing.engotheme.com/cdn-cgi/l/email-protection" className="__cf_email__" data-cfemail="375f525b5b5877445c4e5b5e59525f5843525b1954585a">[email&#160;protected]</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div className="col-md-6 col-lg-6 col-lg-offset-1">
-                <div className="contact-form">
-                  <form action="https://landing.engotheme.com/html/skyline/demo/send_mail_contact.php" method="post">
-                    <div className="row">
-                      <div className="col-sm-6">
-                        <input type="text" className="field-text" name="name" placeholder="Name" />
-                      </div>
-                      <div className="col-sm-6">
-                        <input type="text" className="field-text" name="email" placeholder="Email" />
-                      </div>
-                      <div className="col-sm-12">
-                        <input type="text" className="field-text" name="subject" placeholder="Subject" />
-                      </div>
-                      <div className="col-sm-12">
-                        <textarea cols="30" rows="10" name="message" className="field-textarea" placeholder="Write what do you want"></textarea>
-                      </div>
-                      <div className="col-sm-6">
-                        <button type="submit" className="btn btn-room">SEND</button>
-                      </div>
+              <div className="wrap-about">
+                <div className="about-item">
+                  <div className="col-md-6 col-lg-5">
+                    <div className="text">
+                      <h2>Contact</h2>
+                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.</p>
+                      <ul>
+                        <li><i className=" fa ion-ios-location-outline"></i> 121 King Str, Melbourne Victoria</li>
+                        <li><i className="fa fa-phone" aria-hidden="true"></i> 1-548-854-8898</li>
+                        <li><i className="fa fa-envelope-o" aria-hidden="true"></i><a href="https://landing.engotheme.com/cdn-cgi/l/email-protection" className="__cf_email__" data-cfemail="375f525b5b5877445c4e5b5e59525f5843525b1954585a">[email&#160;protected]</a></li>
+                      </ul>
                     </div>
-                  </form>
+                  </div>
+                  <div className="col-md-6 col-lg-6 col-lg-offset-1">
+                    <div className="contact-form">
+                      <form action="https://landing.engotheme.com/html/skyline/demo/send_mail_contact.php" method="post">
+                        <div className="col-sm-6">
+                          <input type="text" className="field-text" name="name" placeholder="Name" />
+                        </div>
+                        <div className="col-sm-6">
+                          <input type="text" className="field-text" name="email" placeholder="Email" />
+                        </div>
+                        <div className="col-sm-12">
+                          <input type="text" className="field-text" name="subject" placeholder="Subject" />
+                        </div>
+                        <div className="col-sm-12">
+                          <textarea cols="30" rows="10" name="message" className="field-textarea" placeholder="Write what do you want"></textarea>
+                        </div>
+                        <div className="col-sm-6">
+                          <button type="submit" className="btn btn-room">SEND</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

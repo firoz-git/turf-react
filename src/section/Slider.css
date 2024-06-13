@@ -233,3 +233,12 @@ html {
 /* .blurred {
     filter: blur(4px);
 } */
+
+.dropdown-menu {
+    text-align: center;
+    left: 5px;
+    min-width: 300px;
+    top: 100px;
+    max-height: 200px; /* Adjust based on your design */
+    overflow-y: scroll;
+}

@@ -47,6 +47,15 @@ function Slider({ slots, fetchSlots }) {
         setShowBookNow(false)
         setNotBooking(false)
     };
+
+    const turfNames = {
+        'Turf-1': 'Turf 5s A',
+        'Turf-2': 'Turf 5s B',
+        'Turf-3': 'Turf 5s C',
+        'Turf-4': 'Turf 7s A',
+        'Turf-5': 'Turf 9s A'
+    };
+
     const handleTurfSelect = async (turf) => {
         setSelectedTurf(turf);
         console.log(turf, 'iam turf selected');
@@ -118,6 +127,12 @@ function Slider({ slots, fetchSlots }) {
 
             console.log(user.date, 'iam selected date')
             console.log(selectedDate, 'iam selected date')
+            console.log(user.turfName, 'iam selected date')
+            console.log(selectedTurf, 'iam selected date')
+            console.log(user.startTime, 'iam selected date')
+            console.log(selectedTimeSlot.startTime, 'iam selected date')
+            console.log(user.endTime, 'iam selected date')
+            console.log(selectedTimeSlot.endTime, 'iam selected date')
 
             return user.turfName === selectedTurf && user.date === selectedDate &&
                 user.startTime === selectedTimeSlot.startTime &&
@@ -188,13 +203,11 @@ function Slider({ slots, fetchSlots }) {
                         <form>
                             <div className=" carousel-search">
                                 <div className="btn-group">
-                                    <a className="btn dropdown-toggle turf-style" data-toggle="dropdown">{selectedTurf}</a>
+                                    <a className="btn dropdown-toggle turf-style" data-toggle="dropdown">{turfNames[selectedTurf]}</a>
                                     <ul className="dropdown-menu" style={{ textAlign: 'center', left: -80, minWidth: 300, top: 100 }}>
-                                        <li><a onClick={() => handleTurfSelect('Turf-1')}>Turf-1</a></li>
-                                        <li><a onClick={() => handleTurfSelect('Turf-2')}>Turf-2</a></li>
-                                        <li><a onClick={() => handleTurfSelect('Turf-3')}>Turf-3</a></li>
-                                        <li><a onClick={() => handleTurfSelect('Turf-4')}>Turf-4</a></li>
-                                        <li><a onClick={() => handleTurfSelect('Turf-5')}>Turf-5</a></li>
+                                        {Object.entries(turfNames).map(([key, value]) => (
+                                            <li key={key}><a onClick={() => handleTurfSelect(key)}>{value}</a></li>
+                                        ))}
                                     </ul>
                                 </div>
                             </div>
@@ -214,10 +227,24 @@ function Slider({ slots, fetchSlots }) {
                                             <img src="images/Home-1/date-icon.png" alt="#" />
                                         )}
                                     </a>
-                                    <ul className="dropdown-menu" style={{ textAlign: 'center', left: 5, minWidth: 300, top: 100 }}>
+                                    {/* <ul className="dropdown-menu" style={{ textAlign: 'center', left: 5, minWidth: 300, top: 100 }}>
                                         {showTime && showTime.map(time => (
                                             <li><a onClick={() => handleTimeSlotSelect(time)}>{time.startTime}-{time.endTime}</a></li>
                                         ))
+                                        }
+                                    </ul> */}
+                                    <ul className="dropdown-menu" style={{ textAlign: 'center', left: 5, minWidth: 300, top: 100 }}>
+                                        {showTime &&
+                                            [
+                                                ...showTime.filter(time => time.startTime.includes("AM")).sort((a, b) => a.startTime.localeCompare(b.startTime)),
+                                                ...showTime.filter(time => time.startTime.includes("PM")).sort((a, b) => a.startTime.localeCompare(b.startTime))
+                                            ].map((time, index) => (
+                                                <li key={index}>
+                                                    <a onClick={() => handleTimeSlotSelect(time)}>
+                                                        {time.startTime}-{time.endTime}
+                                                    </a>
+                                                </li>
+                                            ))
                                         }
                                     </ul>
                                 </div>
@@ -270,8 +297,11 @@ function Slider({ slots, fetchSlots }) {
             <div className={`section-slider height-v ${showModal ? 'blurred' : ''}`}>
                 {/* existing JSX code */}
 
-                <Modal showModal={showModal} handleClose={handleCloseModal}/>
-                    {/* <h2>Booking Details</h2>
+                <Modal showModal={showModal} slotData={selectedTimeSlot}
+                    turfName={selectedTurf}
+                    selectedDate={selectedDate}
+                    allSlotData={showTime} handleClose={handleCloseModal} />
+                {/* <h2>Booking Details</h2>
                     <p>Enter your booking information here.</p>
                 </Modal> */}
             </div>
