@@ -61,7 +61,7 @@ import { collection, getDocs } from 'firebase/firestore';
         <div className="container">
           <div className="banner-content">
             <h2>RESERVATION</h2>
-            <p>Lorem Ipsum is simply dummy text of the printing</p>
+            {/* <p>Lorem Ipsum is simply dummy text of the printing</p> */}
           </div>
         </div>
       </section>

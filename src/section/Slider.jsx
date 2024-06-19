@@ -41,7 +41,7 @@ function Slider({ slots, fetchSlots }) {
         fetchUserDetails()
     }, []);
     const handleCalendarToggle = (event) => {
-        console.log(event, 'iam events')
+        // //console.log(event, 'iam events')
         event.preventDefault();
         setShowCalendar(!showCalendar);
         setShowBookNow(false)
@@ -58,7 +58,7 @@ function Slider({ slots, fetchSlots }) {
 
     const handleTurfSelect = async (turf) => {
         setSelectedTurf(turf);
-        console.log(turf, 'iam turf selected');
+        // //console.log(turf, 'iam turf selected');
         setSelectedTimeSlot(null)
         setShowBookNow(false)
         setNotBooking(false)
@@ -69,28 +69,29 @@ function Slider({ slots, fetchSlots }) {
 
         switch (turf) {
             case 'Turf-1':
-                TimeData = slots.turf_1.map(slot => ({ startTime: slot.startTime, endTime: slot.endTime }));
+                TimeData = slots.turf_1.map(slot => ({ startTime: slot.startTime, endTime: slot.endTime, price: slot.price }));
                 break;
             case 'Turf-2':
-                TimeData = slots.turf_2.map(slot => ({ startTime: slot.startTime, endTime: slot.endTime }));
+                TimeData = slots.turf_2.map(slot => ({ startTime: slot.startTime, endTime: slot.endTime, price: slot.price }));
                 break;
             case 'Turf-3':
-                TimeData = slots.turf_3.map(slot => ({ startTime: slot.startTime, endTime: slot.endTime }));
+                TimeData = slots.turf_3.map(slot => ({ startTime: slot.startTime, endTime: slot.endTime, price: slot.price }));
                 break;
             case 'Turf-4':
-                TimeData = slots.turf_4.map(slot => ({ startTime: slot.startTime, endTime: slot.endTime }));
+                TimeData = slots.turf_4.map(slot => ({ startTime: slot.startTime, endTime: slot.endTime, price: slot.price }));
                 break;
             case 'Turf-5':
-                TimeData = slots.turf_5.map(slot => ({ startTime: slot.startTime, endTime: slot.endTime }));
+                TimeData = slots.turf_5.map(slot => ({ startTime: slot.startTime, endTime: slot.endTime, price: slot.price }));
                 break;
             default:
-                console.log('Unknown turf selected');
+            // //console.log('Unknown turf selected');
         }
         setShowTime(TimeData);
         setLoadingSlots(false);
     };
 
     const handleTimeSlotSelect = (time) => {
+        // //console.log(time, 'iam the time data selected')
         setSelectedTimeSlot(time)
         setShowBookNow(false)
         setNotBooking(false)
@@ -101,11 +102,11 @@ function Slider({ slots, fetchSlots }) {
             const usersCollection = collection(db, 'users');
             const snapshot = await getDocs(usersCollection);
             const userData = snapshot.docs.map(doc => doc.data());
-            console.log(userData, 'iam userdata')
+            //console.log(userData, 'iam userdata')
             // setUsers(userData);
             return userData
         } catch (error) {
-            console.error('Error fetching user details:', error);
+            //console.error('Error fetching user details:', error);
         }
     };
     const convertFirebaseTimestampToDate = (timestamp) => {
@@ -118,29 +119,49 @@ function Slider({ slots, fetchSlots }) {
         setLoadingAvailability(true); // Start loading
         const userDetails = await fetchUserDetails(); // Fetch user details
 
-        console.log(userDetails, 'userdata await completed')
+        //console.log(userDetails, 'userdata await completed')
         setUsers(userDetails)
+        // const slotAvailable = userDetails.some(user => {
+
+        //     user.date = convertFirebaseTimestampToDate(user.date)
+        //     // user.date = formattedDate(user.date)
+
+        //     //console.log(user.date, 'iam selected date')
+        //     //console.log(selectedDate, 'iam selected date')
+        //     //console.log(user.turfName, 'iam selected date')
+        //     //console.log(selectedTurf, 'iam selected date')
+        //     //console.log(user.startTime, 'iam selected date')
+        //     //console.log(selectedTimeSlot.startTime, 'iam selected date')
+        //     //console.log(user.endTime, 'iam selected date')
+        //     //console.log(selectedTimeSlot.endTime, 'iam selected date')
+
+        //     return user.turfName === selectedTurf && user.date === selectedDate &&
+        //         user.startTime === selectedTimeSlot.startTime &&
+        //         user.endTime === selectedTimeSlot.endTime;
+        // });
+
         const slotAvailable = userDetails.some(user => {
+            const isSlotAvailable = user.slots.some(slot => {
+                return (
+                    user.turfName === selectedTurf &&
+                    user.date === selectedDate &&
+                    slot.startTime === selectedTimeSlot.startTime &&
+                    slot.endTime === selectedTimeSlot.endTime
+                );
+            });
 
-            user.date = convertFirebaseTimestampToDate(user.date)
-            user.date = formattedDate(user.date)
+            console.log(user.date, 'iam selected date');
+            console.log(selectedDate, 'iam selected date');
+            console.log(user.turfName, 'iam selected date');
+            console.log(selectedTurf, 'iam selected date');
+            console.log(selectedTimeSlot.startTime, 'iam selected date');
+            console.log(selectedTimeSlot.endTime, 'iam selected date');
 
-            console.log(user.date, 'iam selected date')
-            console.log(selectedDate, 'iam selected date')
-            console.log(user.turfName, 'iam selected date')
-            console.log(selectedTurf, 'iam selected date')
-            console.log(user.startTime, 'iam selected date')
-            console.log(selectedTimeSlot.startTime, 'iam selected date')
-            console.log(user.endTime, 'iam selected date')
-            console.log(selectedTimeSlot.endTime, 'iam selected date')
-
-            return user.turfName === selectedTurf && user.date === selectedDate &&
-                user.startTime === selectedTimeSlot.startTime &&
-                user.endTime === selectedTimeSlot.endTime;
+            return isSlotAvailable;
         });
         console.log(!slotAvailable, 'iam slot status')
         if (slotAvailable) {
-            console.log('not booking')
+            //console.log('not booking')
             setNotBooking(true)
         }
         setShowBookNow(!slotAvailable);
@@ -149,8 +170,12 @@ function Slider({ slots, fetchSlots }) {
     }
 
     const handleBookNow = () => {
-        console.log("Booking now...");
+        //console.log("Booking now...");
         setShowModal(true);
+        setShowBookNow(false)
+        setNotBooking(false)
+        setSelectedTimeSlot(null)
+
     };
     const handleCloseModal = () => {
         setShowModal(false);
@@ -168,9 +193,9 @@ function Slider({ slots, fetchSlots }) {
                             disablePast
                             value={dayjs(selectedDate)}
                             onChange={(date) => {
-                                console.log(date, 'iam date-1')
+                                //console.log(date, 'iam date-1')
                                 date = formattedDate(date.toDate())
-                                console.log(date, 'iam date2')
+                                //console.log(date, 'iam date2')
                                 setSelectedDate(date);
                                 setShowCalendar(false);
                             }}
@@ -300,7 +325,7 @@ function Slider({ slots, fetchSlots }) {
                 <Modal showModal={showModal} slotData={selectedTimeSlot}
                     turfName={selectedTurf}
                     selectedDate={selectedDate}
-                    allSlotData={showTime} handleClose={handleCloseModal} />
+                    allSlotData={showTime} handleClose={handleCloseModal} fetchUserDetails={fetchUserDetails} />
                 {/* <h2>Booking Details</h2>
                     <p>Enter your booking information here.</p>
                 </Modal> */}

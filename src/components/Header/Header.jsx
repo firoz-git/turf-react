@@ -11,8 +11,8 @@ const Header = () => {
         const stickyNav = header.offsetTop;
 
         const handleScroll = () => {
-            console.log(window.pageYOffset, 'iam pageoffset')
-            console.log(stickyNav, 'iam stickyNav')
+            // console.log(window.pageYOffset, 'iam pageoffset')
+            // console.log(stickyNav, 'iam stickyNav')
             if (window.pageYOffset > stickyNav) {
                 header.classList.add('header-top-sky');
             } else {

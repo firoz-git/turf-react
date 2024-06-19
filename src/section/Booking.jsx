@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from 'react'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
-import { createTheme } from '@mui/material/styles'
-import { ThemeProvider } from '@mui/material/styles';
+import { db } from '../firebase/config';
+import { collection, getDocs } from 'firebase/firestore';
 import dayjs from 'dayjs';
 import './Book.css'
 import img1 from '../img/turf-2.jpg'
@@ -14,11 +14,17 @@ import img5 from '../img/turf-5.jpg'
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Modal from '../components/Modal/Modal'
+import { format } from 'date-fns';
 
 
-const Booking = (props) => {
 
-    const { slots } = props
+const Booking = ({ slots }) => {
+
+    // const { slots } = props
+
+    const formattedDate = (date) => {
+        return format(date, 'dd-MMM-yy')
+    }
     const images = [
         { id: 1, src: img1, label: '5s One', name: 'turf_1' },
         { id: 2, src: img2, label: '5s Two', name: 'turf_2' },
@@ -35,11 +41,15 @@ const Booking = (props) => {
     const [turfName, setSelectedTurf] = useState('turf_1')
     const [showModal, setShowModal] = useState(false);
     const [selectedSlot, setSelectedSlot] = useState(null); // Add this state to store selected slot details
+    const [user, setUsers] = useState([])
+    const [allSlotData, setSlotTime] = useState()
 
-    // console.log(slotData, 'iam slotdta filtered')
+    //console.log(slotData, 'iam slotdta filtered')
     useEffect(() => {
 
         slotSetting();
+
+        fetchUserDetails();
 
         const handleClickOutside = (event) => {
             if (calendarRef.current && !calendarRef.current.contains(event.target)) {
@@ -53,33 +63,70 @@ const Booking = (props) => {
         };
     }, [turfName, selectedDate]);
 
-    // const renderSlots = (timeOfDay) => {
-    //     return slotData[timeOfDay].map((slot, index) => (
-    //         <button
-    //             key={index}
-    //             className="btn btn-room"
-    //             style={{ marginRight: 10, marginBottom: 10 }}
-    //             onClick={(e) => handleBookNow(e, slot)}
-    //         >
-    //             {slot.startTime}-{slot.endTime}
-    //         </button>
-    //     ));
-    // };
+
+    console.log(selectedSlot, 'iam selectedSlot data')
 
     const handleImageChange = (image) => {
         setActiveImage(image.src);
         setSelectedTurf(image.name)
     };
 
+
+
     const slotSetting = async () => {
         const selectedSlots = slots[turfName] || [];
+        // console.log(selectedSlots, 'iam slots from app')
         setSlots({
             morning: selectedSlots.filter(slot => slot.section === 'Morning'),
             afternoon: selectedSlots.filter(slot => slot.section === 'Afternoon'),
             evening: selectedSlots.filter(slot => slot.section === 'Evening'),
         });
     };
-    // console.log(turfName, 'iam turfname selected')
+
+
+    const fetchUserDetails = async () => {
+        try {
+            const usersCollection = collection(db, 'users');
+            const snapshot = await getDocs(usersCollection);
+            const userData = snapshot.docs.map(doc => doc.data());
+            //console.log(userData, 'iam userdata')
+            setUsers(userData);
+            return userData
+        } catch (error) {
+            //console.error('Error fetching user details:', error);
+        }
+    };
+    const capitalizeFirstLetter = (string) => {
+        if (!string) return '';
+        // Replace underscores with hyphens and capitalize the first letter
+        return string.replace(/_/g, '-').charAt(0).toUpperCase() + string.slice(1).replace(/_/g, '-');
+    };
+
+    const isSlotBooked = (slot) => {
+        const selectedFormattedDate = formattedDate(selectedDate);
+
+        const returnData = user.some(user => {
+            // console.log(user.turfName, '=', capitalizeFirstLetter(turfName))
+            const turfNameMatch = user.turfName === capitalizeFirstLetter(turfName);
+            // console.log(turfNameMatch,'iam match turf')
+            // console.log(user.date, '=', selectedFormattedDate)
+
+            const dateMatch = user.date === selectedFormattedDate;
+            // console.log(dateMatch,'iam date match')
+            // console.log(user.slots, '=', slot)
+
+            const slotMatch = user.slots.some(userSlot =>
+                userSlot.startTime === slot.startTime && userSlot.endTime === slot.endTime
+            );
+            // console.log(turfNameMatch, '=', dateMatch, '=', slotMatch)
+            return turfNameMatch && dateMatch && slotMatch;
+        });
+
+        // console.log(`Checking slot: ${slot.startTime}-${slot.endTime}`);
+        // console.log(returnData, 'iam status return');
+        return returnData;
+    };
+
     const incrementDate = (e) => {
         e.preventDefault();
         setSelectedDate(new Date(selectedDate.setDate(selectedDate.getDate() + 1)));
@@ -87,7 +134,13 @@ const Booking = (props) => {
 
     const decrementDate = (e) => {
         e.preventDefault();
-        setSelectedDate(new Date(selectedDate.setDate(selectedDate.getDate() - 1)));
+        const newDate = new Date(selectedDate);
+        newDate.setDate(newDate.getDate() - 1);
+        const today = new Date();
+        console.log(formattedDate(newDate), '=', formattedDate(today))
+        if (formattedDate(newDate) >= formattedDate(today)) {
+            setSelectedDate(newDate);
+        }
     };
     const handleCloseModal = () => {
         setShowModal(false);
@@ -97,7 +150,31 @@ const Booking = (props) => {
         e.preventDefault();
         console.log("Booking now...", slot);
         setSelectedSlot(slot);
+
+        let TimeData = [];
+
+        switch (slot.name) {
+            case 'Turf-1':
+                TimeData = slots.turf_1.map(slot => ({ startTime: slot.startTime, endTime: slot.endTime, price: slot.price }));
+                break;
+            case 'Turf-2':
+                TimeData = slots.turf_2.map(slot => ({ startTime: slot.startTime, endTime: slot.endTime, price: slot.price }));
+                break;
+            case 'Turf-3':
+                TimeData = slots.turf_3.map(slot => ({ startTime: slot.startTime, endTime: slot.endTime, price: slot.price }));
+                break;
+            case 'Turf-4':
+                TimeData = slots.turf_4.map(slot => ({ startTime: slot.startTime, endTime: slot.endTime, price: slot.price }));
+                break;
+            case 'Turf-5':
+                TimeData = slots.turf_5.map(slot => ({ startTime: slot.startTime, endTime: slot.endTime, price: slot.price }));
+                break;
+            default:
+            // //console.log('Unknown turf selected');
+        }
+        setSlotTime(TimeData);
         setShowModal(true);
+
     };
     return (
         <div className="container">
@@ -158,20 +235,7 @@ const Booking = (props) => {
                                             </LocalizationProvider>
                                         </div>
                                     )}
-                                    {/* <div className="slot-booking">
-                                        <div className="slot-section">
-                                            <h4>Morning Section</h4>
-                                            <div className="slots" onClick={handleBookNow}>{renderSlots('morning')}</div>
-                                        </div>
-                                        <div className="slot-section">
-                                            <h4>Afternoon Section</h4>
-                                            <div className="slots" onClick={handleBookNow}>{renderSlots('afternoon')}</div>
-                                        </div>
-                                        <div className="slot-section">
-                                            <h4>Evening Section</h4>
-                                            <div className="slots" onClick={handleBookNow}>{renderSlots('evening')}</div>
-                                        </div>
-                                    </div> */}
+
                                     <div className="slot-booking">
                                         {['morning', 'afternoon', 'evening'].map(timeOfDay => (
                                             <div className="slot-section" key={timeOfDay}>
@@ -183,6 +247,7 @@ const Booking = (props) => {
                                                             className="btn btn-room"
                                                             style={{ marginRight: 10, marginBottom: 10 }}
                                                             onClick={(e) => handleBookNow(e, slot)}
+                                                            disabled={isSlotBooked(slot)}
                                                         >
                                                             {slot.startTime}-{slot.endTime}
                                                         </button>
@@ -201,9 +266,9 @@ const Booking = (props) => {
                 {/* existing JSX code */}
 
                 <Modal showModal={showModal} slotData={selectedSlot}
-                    turfName={turfName}
-                    selectedDate={selectedDate}
-                    allSlotData={slotData} handleClose={handleCloseModal} />
+                    turfName={capitalizeFirstLetter(turfName)}
+                    selectedDate={formattedDate(selectedDate)}
+                    allSlotData={allSlotData} handleClose={handleCloseModal} fetchUserDetails={fetchUserDetails} />
                 {/* <h2>Booking Details</h2>
                     <p>Enter your booking information here.</p>
                 </Modal> */}

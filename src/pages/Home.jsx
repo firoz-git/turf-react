@@ -10,7 +10,8 @@ import HomeTestimonial from '../components/HomeTestimonial/HomeTestimonial';
 import HomeEvents from '../components/HomeEvents/HomeEvents';
 import HomeGallery from '../components/HomeGallery/HomeGallery';
 import Calendar from '../components/Calender/Calender';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Home({ SlotData, fetchSlots }) {
 
@@ -20,6 +21,8 @@ function Home({ SlotData, fetchSlots }) {
         <div>
             <Header />
             <Slider slots={SlotData} fetchSlots={fetchSlots} />
+            <ToastContainer />
+
             <Turfs />
 
             <HomeAbout />

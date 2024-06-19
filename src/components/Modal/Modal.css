@@ -38,8 +38,11 @@
     right: 10px;
     background: transparent;
     border: none;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     cursor: pointer;
+}
+.modal-close:hover{
+    color:#8e7037
 }
 
 @media (min-width: 768px) {
@@ -100,4 +103,16 @@
 }
 .extra{
     margin-top: -30px;
+}
+
+.slot-dropdown-item {
+    cursor: pointer;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+}
+
+.slot-dropdown-item.disabled {
+    opacity: 0.5; /* Dim the disabled slots */
+    pointer-events: none; /* Prevent clicking on disabled slots */
 }

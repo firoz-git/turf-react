@@ -31,11 +31,11 @@ function footer() {
                                 </div>
                                 <div className="col-xs-12 col-sm-12 col-md-4 col-lg-6 text-right">
                                     <div className="footer-icon-l">
-                                        <a title="Twitter"><i className="fa fa-twitter"
+                                        <a title="Twitter" ><i className="fa fa-twitter"
                                             aria-hidden="true"></i></a>
                                         <a title="Facebook"><i className="fa fa-facebook-square"
                                             aria-hidden="true"></i></a>
-                                        <a title="Tripadvisor"><i className="fa fa-tripadvisor"
+                                        <a title="Tripadvisor"><i className="fa fa-youtube"
                                             aria-hidden="true"></i></a>
                                         <a title="Isnstagram"><i className="fa fa-instagram"
                                             aria-hidden="true"></i></a>
@@ -60,19 +60,16 @@ function footer() {
                                 <div className="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-lg-offset-1 col-md-offset-1  ">
                                     <div className="list-content">
                                         <ul>
-                                            <li><a href="attractions.html" title="">Site Map</a></li>
-                                            <li><a href="tems_condition_1.html" title="">Term & Conditions</a></li>
-                                            <li><a title="">Privacy Policy</a></li>
-                                            <li><a title="">Help</a></li>
-                                            <li><a title="">Affiliate</a></li>
+                                            <li><a title="">Address</a></li>
+                                            <li><a href="tems_condition_1.html" title="">121 King Str, Melbourne Victoria</a></li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div className="col-xs-4 col-sm-4 col-md-2 col-lg-2 col-lg-offset-1 col-md-offset-1 ">
                                     <div className="list-content ">
                                         <ul>
-                                            <li><a title="">Our Location</a></li>
-                                            <li><a title="">Career</a></li>
+                                            <li><a title="">Home</a></li>
+                                            <li><a title="">Reservation</a></li>
                                             <li><a href="about.html" title="">About Us</a></li>
                                             <li><a href="contact.html" title="">Contact Us</a></li>
                                         </ul>
@@ -84,7 +81,6 @@ function footer() {
                                             <li><a title="">FAQS</a></li>
                                             <li><a title="">News</a></li>
                                             <li><a href="gallery_1.html" title="">Photo & Video</a></li>
-                                            <li><a href="restaurant_1.html" title="">Restaurant</a></li>
                                             <li><a title="">Gift Card</a></li>
                                         </ul>
                                     </div>
@@ -94,8 +90,7 @@ function footer() {
                     </div>
                     <div className="footer-bottom">
                         <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6 no-padding">
-                            Copyright © 2017 by <a title="">EngoTheme.</a> SkyLine Hotel Theme
-                            crafted with love
+                            Copyright © 2024 by <a title=""> cochinolympiad.</a> 
                         </div>
                         <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6 no-padding">
                             <div className="payments text-right">
