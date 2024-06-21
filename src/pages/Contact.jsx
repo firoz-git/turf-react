@@ -10,7 +10,7 @@ function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: '',
+    mobile: '',
     message: ''
   });
 
@@ -36,7 +36,7 @@ function Contact() {
       setFormData({
         name: '',
         email: '',
-        subject: '',
+        mobile: '',
         message: ''
       });
     } catch (error) {
@@ -100,9 +100,9 @@ function Contact() {
                         <div className="col-sm-12">
                           <input type="text"
                             className="field-text"
-                            name="subject"
-                            placeholder="Subject"
-                            value={formData.subject}
+                            name="mobile"
+                            placeholder="Mobile"
+                            value={formData.mobile}
                             onChange={handleInputChange}
                             required />
                         </div>

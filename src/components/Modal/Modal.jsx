@@ -157,6 +157,7 @@ const Modal = ({ showModal, slotData, turfName, selectedDate, allSlotData, handl
         formData.slots = selectedSlots
         formData.date = date
         formData.turfName = turf
+        formData.status = true
         console.log('Booking confirmed with details:', formData, date);
         try {
             const docRef = await addDoc(collection(db, 'users'), formData);
