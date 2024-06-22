@@ -283,10 +283,10 @@ function Slider({ slots, fetchSlots }) {
                                 <div className="btn-group">
                                     <a className="btn dropdown-toggle " data-toggle="dropdown" href="index.html#">2</a>
                                     <ul className="dropdown-menu">
-                                        <li><a>1</a></li>
-                                        <li><a>2</a></li>
-                                        <li><a>3</a></li>
-                                        <li><a>4</a></li>
+                                        <li><a  href="#">1</a></li>
+                                        <li><a  href="#">2</a></li>
+                                        <li><a  href="#">3</a></li>
+                                        <li><a  href="#">4</a></li>
                                     </ul>
                                 </div>
                             </div>

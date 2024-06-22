@@ -194,7 +194,7 @@ const Booking = ({ slots }) => {
                                             className={activeImage === image.src ? "active" : ""}
                                             onClick={() => handleImageChange(image)}
                                         >
-                                            <a>{image.label}</a>
+                                            <a  href="#">{image.label}</a>
                                         </li>
                                     ))}
                                 </ul>

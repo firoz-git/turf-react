@@ -392,8 +392,8 @@ function Reserve() {
                   <h2 className="reservation-heading">Availability</h2>
                   <div className="reservation_step">
                     <ul>
-                      <li className="active"><a><img src="images/Home-1/about-icon-8.png" className="img-responsive" alt="Image" /></a></li>
-                      <li><a><img src="images/Home-1/about-icon-8.png" className="img-responsive" alt="Image" /></a></li>
+                      <li className="active"><a  href="#"><img src="images/Home-1/about-icon-8.png" className="img-responsive" alt="Image" /></a></li>
+                      <li><a  href="#"><img src="images/Home-1/about-icon-8.png" className="img-responsive" alt="Image" /></a></li>
                       <li><a ><img src="images/Home-1/about-icon-8.png" className="img-responsive" alt="Image" /></a></li>
                       <li><a ><img src="images/Home-1/about-icon-8.png" className="img-responsive" alt="Image" /></a></li>
                       <li><a ><img src="images/Home-1/about-icon-8.png" className="img-responsive" alt="Image" /></a></li>
