@@ -48,7 +48,7 @@ function App() {
     };
 
     useEffect(() => {
-        console.log(loading,'iam fecthing')
+        // console.log(loading,'iam fecthing')
         fetchSlots();
     }, []);
 
