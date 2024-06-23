@@ -194,46 +194,46 @@ $(document).ready(function () {
     /*end/scroll-header*/
 
     /*datepicker*/
-    $(function () {
-        console.log('date checker')
+    // $(function () {
+    //     console.log('date checker')
 
-        $('#datepicker').each(function () {
-            console.log('first date')
-            $(this).datepicker({
-                autoclose: true,
-                todayHighlight: true
-            }).datepicker('update', new Date());
-            // console.log($(this).datepicker('update', new Date()),'iam datecheck on this')
-        });
-        $('#datepickeri').each(function () {
-            console.log('second date')
-            $(this).datepicker({
-                autoclose: true,
-                todayHighlight: true
-            }).datepicker('update', new Date());
-        });
+    //     $('#datepicker').each(function () {
+    //         console.log('first date')
+    //         $(this).datepicker({
+    //             autoclose: true,
+    //             todayHighlight: true
+    //         }).datepicker('update', new Date());
+    //         // console.log($(this).datepicker('update', new Date()),'iam datecheck on this')
+    //     });
+    //     $('#datepickeri').each(function () {
+    //         console.log('second date')
+    //         $(this).datepicker({
+    //             autoclose: true,
+    //             todayHighlight: true
+    //         }).datepicker('update', new Date());
+    //     });
 
-        $('#datepicker1').each(function () {
-            $("#datepicker1").datepicker({
-                dateFormat: 'mm/dd/yy',
-                changeMonth: true,
-                changeYear: true,
-                yearRange: '-100y:c+nn',
-                maxDate: '-1d'
-            });
-        });
+    //     $('#datepicker1').each(function () {
+    //         $("#datepicker1").datepicker({
+    //             dateFormat: 'mm/dd/yy',
+    //             changeMonth: true,
+    //             changeYear: true,
+    //             yearRange: '-100y:c+nn',
+    //             maxDate: '-1d'
+    //         });
+    //     });
 
-        $('#datepicker2').each(function () {
-            $("#datepicker2").datepicker({
-                dateFormat: 'mm/dd/yy',
-                changeMonth: true,
-                changeYear: true,
-                yearRange: '-100y:c+nn',
-                maxDate: '-1d'
-            });
-        });
+    //     $('#datepicker2').each(function () {
+    //         $("#datepicker2").datepicker({
+    //             dateFormat: 'mm/dd/yy',
+    //             changeMonth: true,
+    //             changeYear: true,
+    //             yearRange: '-100y:c+nn',
+    //             maxDate: '-1d'
+    //         });
+    //     });
 
-    });
+    // });
 
     /*end/datepicker*/
 
