@@ -42,7 +42,7 @@
     cursor: pointer;
 }
 .modal-close:hover{
-    color:#8e7037
+    color:#ff731d
 }
 
 @media (min-width: 768px) {
@@ -69,8 +69,8 @@
 
 .add-slot:hover {
     text-decoration: none;
-    background: #8e7037;
-    border: 2px solid #8e7037;
+    background: #ff731d;
+    border: 2px solid #ff731d;
     color: #FFF;
 }
 

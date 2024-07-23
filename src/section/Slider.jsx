@@ -49,11 +49,11 @@ function Slider({ slots, fetchSlots }) {
     };
 
     const turfNames = {
-        'Turf-1': 'Turf 5s A',
-        'Turf-2': 'Turf 5s B',
-        'Turf-3': 'Turf 5s C',
-        'Turf-4': 'Turf 7s A',
-        'Turf-5': 'Turf 9s A'
+        'Turf-1': '5s Football A',
+        'Turf-2': '5s Football B',
+        'Turf-3': '5s Football C',
+        'Turf-4': '7s Football',
+        'Turf-5': '9s Cricket'
     };
 
     const handleTurfSelect = async (turf) => {
@@ -229,7 +229,7 @@ function Slider({ slots, fetchSlots }) {
                             <div className=" carousel-search">
                                 <div className="btn-group">
                                     <a className="btn dropdown-toggle turf-style" data-toggle="dropdown">{turfNames[selectedTurf]}</a>
-                                    <ul className="dropdown-menu" style={{ textAlign: 'center', left: -80, minWidth: 300, top: 100 }}>
+                                    <ul className="dropdown-menu" style={{ textAlign: 'center', left: -16, minWidth: 300, top: 100 }}>
                                         {Object.entries(turfNames).map(([key, value]) => (
                                             <li key={key}><a onClick={() => handleTurfSelect(key)}>{value}</a></li>
                                         ))}

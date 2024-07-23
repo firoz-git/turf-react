@@ -20,7 +20,7 @@ function HomeEvents() {
         { id: 3, src: 'images/Home-1/Our-Events-3.jpg', label: 'Cricket' },
     ];
     return (
-        <div className="events">
+        <div className="events" style={{backgroundColor:'#f2f2f2'}}>
             <div className="container">
                 <h2 className="events-title">Our Events</h2>
                 <div className="line"></div>

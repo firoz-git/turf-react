@@ -3,3 +3,11 @@
     top: 0;
     width: 100%;
 } */
+
+/* .navbar-nav li a:hover {
+    color: red;
+} */
+.header-sky .navbar .navbar-nav li:hover a {
+    background: transparent;
+    color: #ff731d !important;
+  }
