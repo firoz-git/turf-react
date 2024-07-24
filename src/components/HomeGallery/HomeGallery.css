@@ -1,0 +1,12 @@
+.gallery-our .row {
+  margin-bottom: 10px; /* Space between rows */
+}
+
+.gallery_product {
+  /* padding: 10px; */
+  margin-right: 10px; /* Space between images */
+}
+
+.gallery_product .wrap-box {
+  margin-bottom: 10px; /* Additional margin to ensure proper spacing */
+}
